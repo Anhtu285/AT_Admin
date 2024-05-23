@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
-import AboutUs from '../views/AboutUs.vue'
+
 import { DefaultLayout } from '@/layouts/indexs'
 
 const router = createRouter({
@@ -28,15 +27,20 @@ const router = createRouter({
           component: () => import('../views/AboutUs.vue')
         },
         {
+          path: '/Addstudent',
+          name: 'Addstudent',
+          component: () => import('../components/Students/AddView.vue')
+        },
+        {
           path: '/student',
           name: 'student',
           component: () => import('../components/Students/IndexView.vue')
         },
         {
-          path: '/demo',
-          name: 'demo',
-          component: () => import('../views/DemoChart.vue')
-        },
+          path: '/login',
+          name: 'login',
+          component: () => import('../components/Login.vue')
+        }
       ]
     }
   ]

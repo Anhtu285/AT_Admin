@@ -30,17 +30,12 @@ const collapsed = ref<boolean>(false)
     </a-layout-sider> -->
     <a-layout>
       <Header v-model="collapsed"></Header>
-      <!-- <a-layout-header style="background: #fff; padding: 0">
-        <menu-unfold-outlined
-          v-if="collapsed"
-          class="trigger"
-          @click="() => (collapsed = !collapsed)"
-        />
-        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
-      </a-layout-header> -->
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
+
+      <a-layout-content class="flex custom-content">
+        <!-- Main content here -->
+        <!-- <div class="content-inner">
+           Your content 
+        </div> -->
         <router-view />
       </a-layout-content>
       <Footer v-model="collapsed"></Footer>
@@ -66,7 +61,20 @@ const collapsed = ref<boolean>(false)
   margin: 16px;
 }
 
+.layout {
+  height: 100vh;
+}
+
 .site-layout .site-layout-background {
   background: #fff;
+}
+
+.custom-content {
+  overflow: auto; /* Enable scrolling for the content */
+}
+
+.content-inner {
+  padding: 16px; /* Adjust as needed */
+  min-height: calc(100vh - 64px); /* Adjust based on the height of header and footer */
 }
 </style>
