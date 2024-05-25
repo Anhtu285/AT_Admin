@@ -1,91 +1,93 @@
 <template>
-  <div>
-    <div class="header">
-      <div><h1>Thêm sinh viên</h1></div>
+  <div class="dialog">
+    <div class="dialog-header">Thêm mới sinh viên</div>
+    <div class="dialog-body">
+      <div class="input-group">
+        <label for="class">Class</label>
+        <select id="class" v-model="data.classId" class="input">
+          <option v-for="(item, index) in classes" :key="index" :value="item.classId">
+            {{ item.className }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="livingId">Living ID</label>
+        <select id="livingId" v-model="data.livingId" class="input">
+          <option v-for="(item, index) in livingId" :key="index" :value="item.livingId">
+            {{ item.livingName }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="profileStId">Profile ST ID</label>
+        <select id="profileStId" v-model="data.profileStId" class="input">
+          <option v-for="(item, index) in profileStId" :key="index" :value="item.profileStId">
+            {{ item.studentName }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="familyStId">Family ST ID</label>
+        <select id="familyStId" v-model="data.familyStId" class="input">
+          <option v-for="(item, index) in familyStId" :key="index" :value="item.familyStId">
+            {{ item.dadName }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="studentName">Student Name</label>
+        <input id="studentName" type="text" v-model="data.studentName" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="sex">Sex</label>
+        <select id="sex" v-model="data.sex" class="input">
+          <option value="nam">Nam</option>
+          <option value="nu">Nữ</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="birthday">Birthday</label>
+        <input id="birthday" type="date" v-model="data.birthday" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="nationality">Nationality</label>
+        <input id="nationality" type="text" v-model="data.nationality" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="placeOfOrigin">Place of Origin</label>
+        <input id="placeOfOrigin" type="text" v-model="data.placeOfOrigin" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="placeOfResidence">Place of Residence</label>
+        <input id="placeOfResidence" type="text" v-model="data.placeOfResidence" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input id="phoneNumber" type="text" v-model="data.phoneNumber" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input id="email" type="text" v-model="data.email" class="input" />
+      </div>
+      <div class="input-group">
+        <label for="note">Note</label>
+        <input id="note" type="text" v-model="data.note" class="input" />
+      </div>
     </div>
-    <div class="table">
-      <label>Class</label>
-      <select v-model="data.classId">
-        <option v-for="(item, index) in classes" :key="index" :value="item.classId">
-          {{ item.className }}
-        </option>
-      </select>
+    <div class="dialog-footer">
+      <button class="button" @click="$emit('close')">Đóng</button>
+      <button class="button primary" @click="addStudent">Tạo mới</button>
     </div>
-    <div class="table">
-      <label>livingId</label>
-      <select v-model="data.livingId">
-        <option v-for="(item, index) in livingId" :key="index" :value="item.livingId">
-          {{ item.livingName }}
-        </option>
-      </select>
-    </div>
-    <div class="table">
-      <label>profileStId</label>
-      <select v-model="data.profileStId">
-        <option v-for="(item, index) in profileStId" :key="index" :value="item.profileStId">
-          {{ item.studentName }}
-        </option>
-      </select>
-    </div>
-    <div class="table">
-      <label>familyStId</label>
-      <select v-model="data.familyStId">
-        <option v-for="(item, index) in familyStId" :key="index" :value="item.familyStId">
-          {{ item.dadName }}
-        </option>
-      </select>
-    </div>
-    <div class="table">
-      <label>studentName</label>
-      <input type="text" v-model="data.studentName" />
-    </div>
-    <div class="table">
-      <label>sex</label>
-      <select v-model="data.sex">
-        <option value="nam">Nam</option>
-        <option value="nu">Nữ</option>
-      </select>
-    </div>
-    <div class="table">
-      <label>birthday</label>
-      <input type="date" v-model="data.birthday" @change="layDate($event)" />
-    </div>
-    <div class="table">
-      <label>nationality</label>
-      <input type="text" v-model="data.nationality" />
-    </div>
-    <div class="table">
-      <label>placeOfOrigin</label>
-      <input type="text" v-model="data.placeOfOrigin" />
-    </div>
-    <div class="table">
-      <label>placeOfResidence</label>
-      <input type="text" v-model="data.placeOfResidence" />
-    </div>
-    <div class="table">
-      <label>phoneNumber</label>
-      <input type="text" v-model="data.phoneNumber" />
-    </div>
-    <div class="table">
-      <label>email</label>
-      <input type="text" v-model="data.email" />
-    </div>
-    <div class="table">
-      <label>note</label>
-      <input type="text" v-model="data.note" />
-    </div>
-    <button v-on:click="addStudent">Add</button>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
 export default {
-  name: 'AddView',
   data() {
     return {
       data: {
-        studentId: 0,
         studentName: '',
         sex: '',
         birthday: null,
@@ -107,64 +109,50 @@ export default {
     }
   },
   methods: {
-    layDate(event) {
-      // console.log(event.target.value)
-      this.data.birthday = event.target.value
-    },
-    addStudent() {
-      console.log(this.data)
-      axios
-        .post('https://localhost:44356/api/Student', this.data)
-        .then((response) => {
-          this.$emit('close') // Đóng dialog Add
-          this.$emit('updateData') // Gọi sự kiện để cập nhật dữ liệu trang Index
-          console.log(response.status)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    async addStudent() {
+      try {
+        const response = await axios.post('https://localhost:44356/api/Student', this.data)
+        this.$emit('close')
+        this.$emit('updateData')
+        console.log(response.status)
+      } catch (error) {
+        console.log(error)
+      }
     },
     async getClasses() {
-      await axios
-        .get('https://localhost:44356/api/Class')
-        .then((response) => {
-          this.classes = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      try {
+        const response = await axios.get('https://localhost:44356/api/Class')
+        this.classes = response.data
+      } catch (error) {
+        console.log(error)
+      }
     },
     async findAll() {
-      await axios
-        .get('https://localhost:44356/api/FamilySt')
-        .then((response) => {
-          this.familyStId = response.data
-        })
-        .catch((error) => {})
+      try {
+        const response = await axios.get('https://localhost:44356/api/FamilySt')
+        this.familyStId = response.data
+      } catch (error) {
+        console.log(error)
+      }
     },
     async FindAllProfile() {
-      await axios
-        .get('https://localhost:44356/api/ProfileSt')
-        .then((response) => {
-          this.profileStId = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      try {
+        const response = await axios.get('https://localhost:44356/api/ProfileSt')
+        this.profileStId = response.data
+      } catch (error) {
+        console.log(error)
+      }
     },
     async FindAllLiving() {
-      await axios
-        .get('https://localhost:44356/api/Living')
-        .then((response) => {
-          this.livingId = response.data
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      try {
+        const response = await axios.get('https://localhost:44356/api/Living')
+        this.livingId = response.data
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
-  props: ['dialogAdd'],
+  props: ['dialogAdd', 'currentItem'],
   computed: {
     dialog: {
       get() {
@@ -177,6 +165,24 @@ export default {
       }
     }
   },
+  watch: {
+    currentItem: function () {
+      this.data.studentId = this.currentItem.studentId
+      this.data.studentName = this.currentItem.studentName
+      this.data.sex = this.currentItem.sex
+      this.data.classId = this.currentItem.classId
+      this.data.birthday = this.currentItem.birthday
+      this.data.nationality = this.currentItem.nationality
+      this.data.placeOfOrigin = this.currentItem.placeOfOrigin
+      this.data.placeOfResidence = this.currentItem.placeOfResidence
+      this.data.phoneNumber = this.currentItem.phoneNumber
+      this.data.email = this.currentItem.email
+      this.data.note = this.currentItem.note
+      this.data.livingId = this.currentItem.livingId
+      this.data.profileStId = this.currentItem.profileStId
+      this.data.familyStId = this.currentItem.familyStId
+    }
+  },
   async created() {
     await this.getClasses()
     await this.findAll()
@@ -186,4 +192,94 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.dialog {
+  max-width: 800px;
+  margin: 2rem auto;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-header {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px 10px 0 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dialog-body {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  width: 150px;
+  font-weight: 600;
+  color: #495057;
+  margin-right: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0 0 10px 10px;
+}
+
+.button {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: white;
+  color: #495057;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 0.5rem;
+}
+
+.button:hover {
+  background-color: #e2e6ea;
+}
+
+.button.primary {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.button.primary:hover {
+  background-color: #0056b3;
+}
+</style>
