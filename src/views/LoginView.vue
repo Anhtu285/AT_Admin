@@ -107,15 +107,16 @@ const handleLogin = async () => {
   error.value = ''
 
   try {
-    const response = await axios.post('/api/login', {
+
+    const response = await axios.post('https://localhost:44356/api/User', {
       username: username.value,
       password: password.value,
-      userType: userType.value
+      //userType: userType.value
     })
 
     if (response.data.success) {
       // Xử lý khi đăng nhập thành công
-      window.location.href = '/dashboard'
+      window.location.href = '/home'
     } else {
       error.value = 'Tên đăng nhập hoặc mật khẩu không đúng'
     }
@@ -127,6 +128,7 @@ const handleLogin = async () => {
 const handleExit = () => {
   window.location.href = '/'
 }
+
 </script>
 
 <style scoped>

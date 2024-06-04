@@ -1,6 +1,7 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
+// import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
 const collapsed = defineModel()
 const selectedKeys = ref<string[]>(['1'])
 </script>
@@ -42,15 +43,25 @@ const selectedKeys = ref<string[]>(['1'])
         <a-menu-item key="2-1"><i class="ri-user-3-fill"></i> Lecturers</a-menu-item>
         <a-menu-item key="2-2"><i class="ri-profile-fill"></i> LecturerInfo</a-menu-item>
       </a-sub-menu>
-      
+
       <a-sub-menu key="sub3">
         <template #title>
           <i class="ri-graduation-cap-fill"></i>
           <span class="ml-[10px]" v-if="!collapsed">Students Management</span>
         </template>
-        <router-link to="student"><a-menu-item key="4-1"><i class="ri-user-3-fill"></i> Students</a-menu-item></router-link>
-        <a-menu-item key="3-1"><i class="ri-profile-fill"></i> FamilySt</a-menu-item>
-        <a-menu-item key="3-2"><i class="ri-home-heart-fill"></i> ProfileSt</a-menu-item>
+        <router-link to="student"
+          ><a-menu-item key="3-1"><i class="ri-user-3-fill"></i> Students</a-menu-item></router-link
+        >
+        <router-link to="familyst"
+          ><a-menu-item key="3-2"
+            ><i class="ri-profile-fill"></i> FamilySt</a-menu-item
+          ></router-link
+        >
+        <router-link to="profilest"
+          ><a-menu-item key="3-3"
+            ><i class="ri-home-heart-fill"></i> ProfileSt</a-menu-item
+          ></router-link
+        >
       </a-sub-menu>
 
       <a-menu-item key="sub4" title="Class Management">

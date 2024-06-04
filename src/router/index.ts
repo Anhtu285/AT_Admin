@@ -26,7 +26,16 @@ const router = createRouter({
           name: 'student',
           component: () => import('../components/Students/IndexView.vue')
         },
-        
+        {
+          path: '/familyst',
+          name: 'familyst',
+          component: () => import('../components/FamilySt/IndexView.vue')
+        },
+        {
+          path: '/profilest',
+          name: 'profilest',
+          component: () => import('../components/ProfileSt/IndexView.vue')
+        },
       ]
     },
     {

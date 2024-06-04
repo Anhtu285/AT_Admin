@@ -142,9 +142,9 @@
     }
   
     try {
-      const response = await axios.post('/api/users', {
+      const response = await axios.post('https://localhost:44356/api/User', {
         username: username.value,
-        email: email.value,
+        //email: email.value,
         password: password.value,
         userType: userType.value,
       });
